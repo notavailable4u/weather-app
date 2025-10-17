@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: hsl(243, 96%, 9%);
+  color: white;
+  font-size: 18px;
+  padding: 48px 112px 80px;
+}
+
+
+.bricolage-grotesque {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+
+.dm-sans {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.logoUtilityBanner {
+  display: flex;
+justify-content: space-between;
+align-items: center;
+align-self: stretch;
+}
+
+select,
+::picker(select) {
+  appearance: base-select;
+}
+
+h1 {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 52 px;
+  line-height: 120%;
+  letter-spacing: 0;
+  text-align: center;
+}
