@@ -1,3 +1,20 @@
+:root {
+  /* COLORS */
+  --neutral900: hsl(243, 96%, 9%);
+  --neutral800: hsl(243, 27%, 20%);
+  --neutral700: hsl(243, 23%, 24%);
+  --neutral600: hsl(243, 23%, 30%);
+  --neutral300: hsl(240, 6%, 70%);
+  --neutral200: hsl(250, 6%, 84%);
+  --neutral0: hsl(0, 0%, 100%);
+
+  --orange500: hsl(28 ,100%, 52%);
+
+  --blue500: hsl(233 ,67%, 56%);
+
+  --blue700: hsl(248 ,70%, 36%);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,10 +22,12 @@
 }
 
 body {
-  background-color: hsl(243, 96%, 9%);
+  background-color: var(--neutral900);
   color: white;
   font-size: 18px;
   padding: 48px 112px 80px;
+  line-height: 120%;
+  letter-spacing: 0;
 }
 
 
@@ -46,8 +65,138 @@ h1 {
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
-  font-size: 52 px;
+  font-size: 52px;
   line-height: 120%;
   letter-spacing: 0;
   text-align: center;
 }
+
+/* FROM GRID PRACTICE */
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 10% 1fr 1fr 1fr;
+  grid-template-areas:
+    "searchbar searchbar searchbutton"
+    "currentdate currentdate hourly"
+    "feelhumid windpercip hourly"
+    "days days hourly";
+  height: 100vh;
+}
+
+.searchbar {
+  grid-area: searchbar;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  }
+
+input {
+  /* width: 526px; */
+  background-color: var(--neutral800);
+  padding: 16px 24px;
+  border-radius: 12px;
+  color: var(--neutral200);
+  background-image: url('/src/assets/images/icon-search.svg');
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  padding-left: 35px;
+  border: none;
+  font-family: "DM Sans", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+}
+
+input:hover {
+  background-color: var(--neutral700);
+}
+
+.searchbutton {
+  grid-area: searchbutton;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+ }
+
+button {
+  background-color: var(--blue500);
+  padding: 16px 24px;
+  color: var(--neutral0);
+  border-radius: 12px;
+  font-family: "DM";
+  font-size: 20px;
+  margin: 10px;
+}
+
+button:hover {
+  background-color: var(--blue700);
+  cursor: pointer;
+}
+
+.currentdate {
+  background-color: cyan;
+  grid-area: currentdate;
+}
+
+.feelhumid {
+  background-color: darkslateblue;
+  grid-area: feelhumid;
+}
+
+.windpercip {
+  background-color: forestgreen;
+  grid-area: windpercip;
+}
+
+.hourly {
+  background-color: darkorchid;
+  grid-area: hourly;
+}
+
+.days {
+  background-color: lightgrey;
+  grid-area: days;
+}
+
+@media (max-width: 600px) {
+  main {
+    grid-template-areas:
+      "searchbar"
+      "searchbutton"
+      "currentdate"
+      "feelhumid"
+      "windpercip"
+      "days"
+      "hourly";
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 10% 10% 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 991px) {
+  main {
+    grid-template-areas:
+      "searchbar  searchbutton"
+      "currentdate currentdate"
+      "feelhumid windpercip"
+      "days days"
+      "hourly hourly";
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 10% 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 992px) {
+  main {
+    grid-template-columns: 1fr 1fr 1fr;
+    /* grid-template-rows: 1fr  1fr 1fr; */
+    grid-template-areas:
+      "searchbar searchbar searchbutton"
+      "currentdate currentdate hourly"
+      "feelhumid windpercip hourly"
+      "days days hourly";
+  }
+}
+/* END GRID PRACTICE */
