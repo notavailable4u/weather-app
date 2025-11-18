@@ -8,11 +8,11 @@
   --neutral200: hsl(250, 6%, 84%);
   --neutral0: hsl(0, 0%, 100%);
 
-  --orange500: hsl(28 ,100%, 52%);
+  --orange500: hsl(28, 100%, 52%);
 
-  --blue500: hsl(233 ,67%, 56%);
+  --blue500: hsl(233, 67%, 56%);
 
-  --blue700: hsl(248 ,70%, 36%);
+  --blue700: hsl(248, 70%, 36%);
 }
 
 * {
@@ -30,16 +30,13 @@ body {
   letter-spacing: 0;
 }
 
-
 .bricolage-grotesque {
   font-family: "Bricolage Grotesque", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
+  font-variation-settings: "wdth" 100;
 }
-
 
 .dm-sans {
   font-family: "DM Sans", sans-serif;
@@ -50,9 +47,9 @@ body {
 
 .logoUtilityBanner {
   display: flex;
-justify-content: space-between;
-align-items: center;
-align-self: stretch;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
 }
 
 select,
@@ -79,7 +76,7 @@ main {
   grid-template-areas:
     "searchbar searchbar searchbutton"
     "currentdate currentdate hourly"
-    "feelhumid windpercip hourly"
+    "feelhumid windprecipitation hourly"
     "days days hourly";
   height: 100vh;
 }
@@ -89,7 +86,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  }
+}
 
 input {
   /* width: 526px; */
@@ -97,7 +94,7 @@ input {
   padding: 16px 24px;
   border-radius: 12px;
   color: var(--neutral200);
-  background-image: url('/src/assets/images/icon-search.svg');
+  background-image: url("/src/assets/images/icon-search.svg");
   background-repeat: no-repeat;
   background-position: 10px center;
   padding-left: 35px;
@@ -116,7 +113,7 @@ input:hover {
   display: flex;
   align-items: center;
   justify-content: flex-start;
- }
+}
 
 button {
   background-color: var(--blue500);
@@ -134,18 +131,41 @@ button:hover {
 }
 
 .currentdate {
-  background-color: cyan;
+  background-color: var(--neutral800);
+  border-radius: 20px;
   grid-area: currentdate;
 }
 
 .feelhumid {
-  background-color: darkslateblue;
+  /* background-color: darkslateblue; */
   grid-area: feelhumid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
 }
 
-.windpercip {
-  background-color: forestgreen;
-  grid-area: windpercip;
+.weatherDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex-grow: 1;
+  padding: 20px;
+  border-radius: 12px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--neutral600);
+  background-color: var(--neutral800);
+}
+
+.windprecipitation {
+  grid-area: windprecipitation;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
 }
 
 .hourly {
@@ -154,8 +174,24 @@ button:hover {
 }
 
 .days {
-  background-color: lightgrey;
   grid-area: days;
+  display: flex;
+  gap: 20px;
+  align-self: stretch;
+}
+
+.dayContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  flex-grow: 1;
+  background-color: var(--neutral800);
+  padding: 16px 10px;
+  border-radius: 12px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--neutral600);
 }
 
 @media (max-width: 600px) {
@@ -165,7 +201,7 @@ button:hover {
       "searchbutton"
       "currentdate"
       "feelhumid"
-      "windpercip"
+      "windprecipitation"
       "days"
       "hourly";
 
@@ -179,7 +215,7 @@ button:hover {
     grid-template-areas:
       "searchbar  searchbutton"
       "currentdate currentdate"
-      "feelhumid windpercip"
+      "feelhumid windprecipitation"
       "days days"
       "hourly hourly";
 
@@ -195,7 +231,7 @@ button:hover {
     grid-template-areas:
       "searchbar searchbar searchbutton"
       "currentdate currentdate hourly"
-      "feelhumid windpercip hourly"
+      "feelhumid windprecipitation hourly"
       "days days hourly";
   }
 }

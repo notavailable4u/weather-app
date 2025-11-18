@@ -2,6 +2,7 @@ import logoSvg from "./assets/images/logo.svg";
 import unitSvg from "./assets/images/icon-units.svg";
 import Search from "./Search";
 
+
 function App() {
   return (
     <>
@@ -20,14 +21,15 @@ function App() {
       </header>
       <main>
         <Search />
-        <div className="currentdate">current date</div>
-        <div className="feelhumid">Feel | Humidity</div>
-        <div className="windpercip">Wind | Precipitation</div>
-        <div className="days">
+        {/* <div className="currentdate">current date</div> */}
+        {/* <div className="feelhumid">Feel | Humidity</div> */}
+        {/* <div className="windprecipitation">Wind | Precipitation</div> */}
+        {/* <div className="days">
           day1 | day 2 |day 3| day4| day5 | day6 | day 7|
-        </div>
+        </div> */}
         <div className="hourly">Hour forecast and button</div>
       </main>
+      {/*  */}
     </>
   );
 }
