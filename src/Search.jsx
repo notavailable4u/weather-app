@@ -3,6 +3,7 @@ import { useState } from "react";
 import FeelLikeHumidity from "./FeelLikeHumidity";
 import WindPrecipitation from "./WindPrecipitation";
 import DailyForecast from "./DailyForecast";
+import HourlyForecast from "./HourlyForecast";
 
 export default function Search() {
   const [weather, setWeather] = useState(null);
@@ -15,9 +16,11 @@ export default function Search() {
   const [humidity, setHumidity] = useState(null);
   const [wind, setWind] = useState(null);
   const [precipitation, setPrecipitation] = useState("");
-  const [daysArray, setDaysArray] = useState([]);
+  const [daysArray, setDaysArray] = useState("");
   const [dailyHighArray, setDailyHighArray] = useState([]);
   const [dailyLowArray, setDailyLowArray] = useState([]);
+  const [dailyWeathercodeArray, setDailyWeathercodeArray] = useState([]);
+  // const [hourlyHighArray, setHourlyHighArray] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -57,8 +60,6 @@ export default function Search() {
       // Use the coordinates to call the Open-Meteo Forecast API
       const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&current=wind_speed_10m,temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,rain,snowfall,showers&timezone=${timezone}&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch`;
 
-      // const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,rain,showers,snowfall,weather_code&current=apparent_temperature,temperature_2m,rain,weather_code,snowfall,showers,is_day,relative_humidity_2m&timezone=${timezone}&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch`;
-
       const weatherResponse = await fetch(weatherUrl);
       const weatherData = await weatherResponse.json();
       console.log(weatherData);
@@ -76,6 +77,27 @@ export default function Search() {
       console.log(daysArray);
       const dailyHighArray = weatherData.daily.temperature_2m_max;
       const dailyLowArray = weatherData.daily.temperature_2m_min;
+      const dailyWeathercodeArray = weatherData.daily.weather_code;
+      console.log(dailyWeathercodeArray);
+      // const hourlyHighArray = weatherData.hourly.temperature_2m;
+
+      function formatDate(isoString) {
+        const date = new Date(isoString);
+        return Intl.DateTimeFormat("en-US", {
+          weekday: "long",
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        }).format(date);
+      }
+
+      //convert time to short day name for Daily Forecat (daysArray)
+      function getShortDayName(isoString) {
+        const date = new Date(isoString);
+        return Intl.DateTimeFormat("en-US", {
+          weekday: "short",
+        }).format(date);
+      }
 
       // Store results in state
       // setWeather({
@@ -86,22 +108,29 @@ export default function Search() {
       //   current: weatherData.current,
       //   daily: weatherData.daily,
       // });
+
       setWeather(weatherData);
       console.log(weather);
       setCountry(country);
       setCityName(cityName);
-      setDate(date);
-      setTemperatureCurrent(temperatureCurrent);
+      setDate(formatDate(date));
+      setTemperatureCurrent(Math.round(temperatureCurrent));
       setWeatherCode(weatherCode);
-      setFeelsLike(feelsLike);
+      setFeelsLike(Math.round(feelsLike));
       console.log(feelsLike);
       setHumidity(humidity);
-      setWind(wind);
+      setWind(Math.round(wind));
       setPrecipitation(precipitation);
       console.log(precipitation);
-      setDaysArray(daysArray);
+      setDaysArray(daysArray.map((isoString) => getShortDayName(isoString)));
+      console.log(daysArray);
       setDailyHighArray(dailyHighArray);
       setDailyLowArray(dailyLowArray);
+      setDailyWeathercodeArray(dailyWeathercodeArray);
+      console.log(dailyWeathercodeArray);
+
+      // setHourlyHighArray(hourlyHighArray);
+      // console.log(hourlyHighArray);
     } catch (err) {
       console.error(`Error: ${err}`);
       setError(err.message);
@@ -136,7 +165,9 @@ export default function Search() {
         daysArray={daysArray}
         dailyHighArray={dailyHighArray}
         dailyLowArray={dailyLowArray}
+        dailyWeathercodeArray={dailyWeathercodeArray}
       />
+      <HourlyForecast />
     </>
   );
 }

@@ -23,7 +23,7 @@
 
 body {
   background-color: var(--neutral900);
-  color: white;
+  color: var(--neutral0);
   font-size: 18px;
   padding: 48px 112px 80px;
   line-height: 120%;
@@ -52,6 +52,24 @@ body {
   align-self: stretch;
 }
 
+select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--neutral800);
+  color: var(--neutral0);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-family: "DM Sans", sans-serif;
+}
+
+#unitSelect {
+  font-size: 18px;
+  line-height: 120%;
+  letter-spacing: 0;
+}
+
 select,
 ::picker(select) {
   appearance: base-select;
@@ -68,6 +86,29 @@ h1 {
   text-align: center;
 }
 
+.textPreset1 {
+  font-family: "DM Sans", sans-serif;
+  font-size: 96px;
+  line-height: 100%;
+  font-style: italic;
+  letter-spacing: -2px;
+}
+
+.textPreset4 {
+  font-family: "DM Sans", sans-serif;
+  font-size: 28px;
+  line-height: 120%;
+  letter-spacing: 0;
+  color: var(--neutral0);
+}
+
+.textPreset6 {
+  font-family: "DM Sans", sans-serif;
+  font-size: 18px;
+  line-height: 120%;
+  letter-spacing: 0;
+}
+
 /* FROM GRID PRACTICE */
 main {
   display: grid;
@@ -79,6 +120,7 @@ main {
     "feelhumid windprecipitation hourly"
     "days days hourly";
   height: 100vh;
+  column-gap: 10px;
 }
 
 .searchbar {
@@ -112,7 +154,7 @@ input:hover {
   grid-area: searchbutton;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 button {
@@ -131,9 +173,18 @@ button:hover {
 }
 
 .currentdate {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   background-color: var(--neutral800);
+  /* background-image: url(./assets/images/bg-today-large.svg); */
   border-radius: 20px;
   grid-area: currentdate;
+}
+
+.iconCurrent {
+  width: 120px;
+  height: 120px;
 }
 
 .feelhumid {
@@ -169,14 +220,54 @@ button:hover {
 }
 
 .hourly {
-  background-color: darkorchid;
   grid-area: hourly;
+  width: 384px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #262540;
+  padding: 24px;
+  border-radius: 20px;
+}
+
+.hourHeading {
+  width: 336px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hourContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  background-color: #302f4a;
+  padding-left: 12px;
+  padding-right: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 8px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #3c3b5e;
 }
 
 .days {
   grid-area: days;
+}
+
+.sevenDayContainer {
   display: flex;
   gap: 20px;
+  align-self: stretch;
+  margin-top: 10px;
+}
+
+.dailyHighLow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   align-self: stretch;
 }
 
@@ -192,6 +283,11 @@ button:hover {
   border-width: 1px;
   border-style: solid;
   border-color: var(--neutral600);
+}
+
+.iconDaily {
+  height: 60px;
+  width: 60px;
 }
 
 @media (max-width: 600px) {
