@@ -4,6 +4,7 @@ import FeelLikeHumidity from "./FeelLikeHumidity";
 import WindPrecipitation from "./WindPrecipitation";
 import DailyForecast from "./DailyForecast";
 import HourlyForecast from "./HourlyForecast";
+import NoResultView from "./NoResultView";
 
 export default function Search() {
   const [weather, setWeather] = useState(null);
@@ -137,6 +138,10 @@ export default function Search() {
     } finally {
       setLoading(false);
     }
+  }
+
+  if (error === "Location not found") {
+    return <NoResultView search={search} />;
   }
 
   return (
