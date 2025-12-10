@@ -290,6 +290,13 @@ button:hover {
   width: 60px;
 }
 
+.noResult {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
 @media (max-width: 600px) {
   main {
     grid-template-areas:
