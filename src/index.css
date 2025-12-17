@@ -64,12 +64,6 @@ select {
   font-family: "DM Sans", sans-serif;
 }
 
-#unitSelect {
-  font-size: 18px;
-  line-height: 120%;
-  letter-spacing: 0;
-}
-
 select,
 ::picker(select) {
   appearance: base-select;
@@ -97,6 +91,7 @@ h1 {
 .textPreset4 {
   font-family: "DM Sans", sans-serif;
   font-size: 28px;
+  font-weight: bold;
   line-height: 120%;
   letter-spacing: 0;
   color: var(--neutral0);
@@ -105,6 +100,23 @@ h1 {
 .textPreset6 {
   font-family: "DM Sans", sans-serif;
   font-size: 18px;
+  font-weight: 500;
+  line-height: 120%;
+  letter-spacing: 0;
+}
+
+.textPreset7 {
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 120%;
+  letter-spacing: 0;
+}
+
+.textPreset8 {
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 120%;
   letter-spacing: 0;
 }
@@ -339,3 +351,64 @@ button:hover {
   }
 }
 /* END GRID PRACTICE */
+
+.dropDown {
+  width: 214px;
+display: flex;
+flex-direction: column;
+gap: 4px;
+background-color: #262540;
+padding: 6px 8px;
+border-radius: 12px;
+border-width: 1px;
+border-style: solid;
+border-color: #3c3b5e;
+box-shadow: 0px 8px 16px 0 rgb(0.007843137718737125 0.003921568859368563 0.1725490242242813 / 0.32);
+}
+
+.unitSelect {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 6px;
+background-color: #262540;
+padding: 8px 10px;
+border-radius: 6px;
+}
+
+.unitLabel.textPreset7 {
+  width: 198px;
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px 8px;
+border-radius: 8px;
+}
+
+.unitSelections {
+  display: flex;
+flex-direction: column;
+gap: 8px;
+align-self: stretch;
+}
+
+.unitVariables {
+  color: var(--neutral300);
+}
+
+.unitOption {
+width: 198px;
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px 8px;
+border-radius: 8px;
+background-color: var(--neutral700);
+}
+
+.divider {
+  height: 1px;
+background-color: var(--neutral600);
+margin-top: 8px;
+margin-bottom: 8px;
+}

@@ -6,7 +6,7 @@ import DailyForecast from "./DailyForecast";
 import HourlyForecast from "./HourlyForecast";
 import NoResultView from "./NoResultView";
 
-export default function Search() {
+export default function Search({ measurementSystem }) {
   const [weather, setWeather] = useState(null);
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
@@ -58,8 +58,13 @@ export default function Search() {
         country
       );
 
+      const usingImperial = measurementSystem !== "metric";
+      const unitParams = usingImperial
+        ? "&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch"
+        : "&wind_speed_unit=kmh&temperature_unit=celsius&precipitation_unit=mm";
+
       // Use the coordinates to call the Open-Meteo Forecast API
-      const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&current=wind_speed_10m,temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,rain,snowfall,showers&timezone=${timezone}&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch`;
+      const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&current=wind_speed_10m,temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,rain,snowfall,showers&timezone=${timezone}${unitParams}`;
 
       const weatherResponse = await fetch(weatherUrl);
       const weatherData = await weatherResponse.json();

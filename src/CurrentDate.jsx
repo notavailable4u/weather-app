@@ -95,7 +95,7 @@ export default function CurrentDate({
       </div>
       {icon?.src ? (<img className="iconCurrent" src={icon.src} alt={icon.alt} />) : (<span/>)}
       <div>
-        <p className="textPreset1">{temperatureCurrent}</p>
+        <p className="textPreset1">{temperatureCurrent} &#176; </p>
       </div>
     </div>
   );
