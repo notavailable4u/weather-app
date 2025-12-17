@@ -34,8 +34,8 @@ export default function DailyForecast({
                   <span />
                 )}
                 <div className="dailyHighLow">
-                  <span>{roundedHighTemp[index]}</span>{" "}
-                  <span>{roundedLowTemp[index]}</span>
+                  <span>{roundedHighTemp[index]}&#176;</span>{" "}
+                  <span>{roundedLowTemp[index]}&#176;</span>
                 </div>
               </div>
             );

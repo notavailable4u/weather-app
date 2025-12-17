@@ -4,11 +4,11 @@ export default function FeelLikeHumidity({ feelsLike, humidity }) {
       <div className="feelhumid">
         <div className="weatherDetail">
           <p>Feels Like</p>
-          <p>{feelsLike}</p>
+          <p>{feelsLike}&#176;</p>
         </div>
         <div className="weatherDetail">
           <p>Humidity</p>
-          <p>{humidity}</p>
+          <p>{humidity}%</p>
         </div>
       </div>
     </>
