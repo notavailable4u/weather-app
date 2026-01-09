@@ -5,6 +5,7 @@ import WindPrecipitation from "./WindPrecipitation";
 import DailyForecast from "./DailyForecast";
 import HourlyForecast from "./HourlyForecast";
 import NoResultView from "./NoResultView";
+import SearchForm from "./SearchForm";
 
 export default function Search({ measurementSystem }) {
   const [weather, setWeather] = useState(null);
@@ -151,17 +152,7 @@ export default function Search({ measurementSystem }) {
 
   return (
     <>
-      <form action={search}>
-        <div className="searchbar">
-          <label>
-            <input
-              name="query"
-              placeholder="Search for a city, e.g., New York"
-            />
-          </label>
-          <button type="submit">Search</button>
-        </div>
-      </form>
+      <SearchForm search={search} />
       <CurrentDate
         country={country}
         cityName={cityName}
