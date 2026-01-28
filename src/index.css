@@ -352,7 +352,10 @@ button:hover {
 }
 /* END GRID PRACTICE */
 
+/* UNIT DROPDOWN STYLES */
+
 .dropDown {
+  position: relative;
   width: 214px;
 display: flex;
 flex-direction: column;
@@ -371,9 +374,24 @@ display: flex;
 justify-content: center;
 align-items: center;
 gap: 6px;
-background-color: #262540;
+background-color: var(--neutral800);
 padding: 8px 10px;
 border-radius: 6px;
+cursor: pointer;
+}
+
+.unitsMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background-color: #262540;
+  border: 1px solid #3c3b5e;
+  border-radius: 12px;
+  padding: 6px 8px;
+  box-shadow: 0px 8px 16px 0 rgb(0.007843137718737125 0.003921568859368563 0.1725490242242813 / 0.32);
+  z-index: 10;
 }
 
 .unitLabel.textPreset7 {
@@ -383,6 +401,7 @@ align-items: center;
 gap: 10px;
 padding: 10px 8px;
 border-radius: 8px;
+cursor:pointer
 }
 
 .unitSelections {
@@ -403,7 +422,17 @@ align-items: center;
 gap: 10px;
 padding: 10px 8px;
 border-radius: 8px;
-background-color: var(--neutral700);
+background-color: var(--neutral800);
+}
+
+.unitOptionSelected {
+  width: 198px;
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px 8px;
+border-radius: 8px;
+  background-color: var(--neutral700);
 }
 
 .divider {

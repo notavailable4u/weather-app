@@ -17,7 +17,9 @@ export default function Search({ measurementSystem }) {
   const [feelsLike, setFeelsLike] = useState(null);
   const [humidity, setHumidity] = useState(null);
   const [wind, setWind] = useState(null);
+  const [windMeasure, setWindMeasure] = useState("");
   const [precipitation, setPrecipitation] = useState("");
+  const [precipitationMeasure, setPrecipitationMeasure] = useState("");
   const [daysArray, setDaysArray] = useState("");
   const [dailyHighArray, setDailyHighArray] = useState([]);
   const [dailyLowArray, setDailyLowArray] = useState([]);
@@ -67,6 +69,8 @@ export default function Search({ measurementSystem }) {
       // Use the coordinates to call the Open-Meteo Forecast API
       const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code&current=wind_speed_10m,temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,rain,snowfall,showers&timezone=${timezone}${unitParams}`;
 
+      console.log("Weather URL:", weatherUrl);
+
       const weatherResponse = await fetch(weatherUrl);
       const weatherData = await weatherResponse.json();
       console.log(weatherData);
@@ -79,7 +83,11 @@ export default function Search({ measurementSystem }) {
       console.log(feelsLike);
       const humidity = weatherData.current.relative_humidity_2m;
       const wind = weatherData.current.wind_speed_10m;
+      const windMeasure = weatherData.current_units.wind_speed_10m;
+      console.log(windMeasure);
       const precipitation = weatherData.current.precipitation;
+      const precipitationMeasure = weatherData.current_units.precipitation;
+      console.log(precipitation);
       const daysArray = weatherData.daily.time;
       console.log(daysArray);
       const dailyHighArray = weatherData.daily.temperature_2m_max;
@@ -105,17 +113,6 @@ export default function Search({ measurementSystem }) {
           weekday: "short",
         }).format(date);
       }
-
-      // Store results in state
-      // setWeather({
-      //   location: `${name}, ${country}`,
-      //   latitude,
-      //   longitude,
-      //   timezone,
-      //   current: weatherData.current,
-      //   daily: weatherData.daily,
-      // });
-
       setWeather(weatherData);
       console.log(weather);
       setCountry(country);
@@ -127,8 +124,10 @@ export default function Search({ measurementSystem }) {
       console.log(feelsLike);
       setHumidity(humidity);
       setWind(Math.round(wind));
+      setWindMeasure(windMeasure);
       setPrecipitation(precipitation);
       console.log(precipitation);
+      setPrecipitationMeasure(precipitationMeasure);
       setDaysArray(daysArray.map((isoString) => getShortDayName(isoString)));
       console.log(daysArray);
       setDailyHighArray(dailyHighArray);
@@ -161,7 +160,12 @@ export default function Search({ measurementSystem }) {
         weatherCode={weatherCode}
       />
       <FeelLikeHumidity feelsLike={feelsLike} humidity={humidity} />
-      <WindPrecipitation wind={wind} precipitation={precipitation} />
+      <WindPrecipitation
+        wind={wind}
+        precipitation={precipitation}
+        precipitationMeasure={precipitationMeasure}
+        windMeasure={windMeasure}
+      />
       <DailyForecast
         daysArray={daysArray}
         dailyHighArray={dailyHighArray}
