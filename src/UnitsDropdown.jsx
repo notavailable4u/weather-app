@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import iconCheckmark from "./assets/images/iconCheckmark.svg";
 import unitSvg from "./assets/images/icon-units.svg";
-import iconDropdown from "./assets/images/iconDropdown.svg"
+import iconDropdown from "./assets/images/iconDropdown.svg";
 
 export default function UnitsDropdown({ measurementSystem, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const isMetric = measurementSystem === "metric";
   const switchLabel = isMetric ? "Switch to Imperial" : "Switch to Metric";
@@ -14,17 +15,29 @@ export default function UnitsDropdown({ measurementSystem, onChange }) {
   };
 
   const renderUnitOption = (label, selected) => (
-    <div className="unitOption">
+    <div className={selected ? "unitOptionSelected" : "unitOption"}>
       <span>{label}</span>
       {selected ? <img src={iconCheckmark} alt="Selected" /> : null}
     </div>
   );
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!isOpen) return;
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen]);
+
   return (
-    <div className="dropDown">
+    <div className="dropDown" ref={dropdownRef}>
       <div className="unitSelect" onClick={() => setIsOpen((open) => !open)}>
         <img src={unitSvg} alt="icon representing units measurements" /> Units
-         <img src={iconDropdown} alt="icon representing dropdown arrow"/>
+        <img src={iconDropdown} alt="icon representing dropdown arrow" />
       </div>
 
       {isOpen && (
@@ -43,7 +56,7 @@ export default function UnitsDropdown({ measurementSystem, onChange }) {
           <div className="unitSelections">
             <span className="unitVariables">Wind Speed</span>
             {renderUnitOption("km/h ", isMetric)}
-            {renderUnitOption("mph ", !isMetric)}
+            {renderUnitOption("mp/h ", !isMetric)}
           </div>
           <div className="divider"></div>
           <div className="unitSelections">
