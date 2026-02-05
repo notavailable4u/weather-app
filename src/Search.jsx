@@ -24,7 +24,10 @@ export default function Search({ measurementSystem }) {
   const [dailyHighArray, setDailyHighArray] = useState([]);
   const [dailyLowArray, setDailyLowArray] = useState([]);
   const [dailyWeathercodeArray, setDailyWeathercodeArray] = useState([]);
-  // const [hourlyHighArray, setHourlyHighArray] = useState(null);
+  const [dayNamesArray, setDayNamesArray] = useState([]);
+  const [hourlyTimes, setHourlyTimes] = useState([]);
+  const [hourlyTemps, setHourlyTemps] = useState([]);
+  const [hourlyWeatherCodes, setHourlyWeatherCodes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -94,7 +97,44 @@ export default function Search({ measurementSystem }) {
       const dailyLowArray = weatherData.daily.temperature_2m_min;
       const dailyWeathercodeArray = weatherData.daily.weather_code;
       console.log(dailyWeathercodeArray);
-      // const hourlyHighArray = weatherData.hourly.temperature_2m;
+      const hourlyDateArray = weatherData.hourly.time;
+      const hourlyTempArray = weatherData.hourly.temperature_2m;
+      const hourlyWeatherCodeArray = weatherData.hourly.weather_code;
+
+      // Hourly Forecast conversions
+       const safeHourlyDates = Array.isArray(hourlyDateArray) ? hourlyDateArray : [];
+  const dayOne24Hours = safeHourlyDates.slice(0, 24);
+  const dayTwo24Hours = safeHourlyDates.slice(24, 48);
+  const dayThree24Hours = safeHourlyDates.slice(48, 72);
+  const dayFour24Hours = safeHourlyDates.slice(72, 96);
+  const dayFive24Hours = safeHourlyDates.slice(96, 120);
+  const daySix24Hours = safeHourlyDates.slice(120, 144);
+  const daySeven24Hours = safeHourlyDates.slice(144, 168);
+
+  function getLongDayName(isoString) {
+  const date = new Date(isoString);
+  return Intl.DateTimeFormat("en-US", {
+    weekday: "long",
+  }).format(date);
+}
+
+  const dayOneName = getLongDayName(dayOne24Hours[0]);
+  const dayTwoName = getLongDayName(dayTwo24Hours[0]);
+  const dayThreeName = getLongDayName(dayThree24Hours[0]);
+  const dayFourName = getLongDayName(dayFour24Hours[0]);
+  const dayFiveName = getLongDayName(dayFive24Hours[0]);
+  const daySixName = getLongDayName(daySix24Hours[0]);
+  const daySevenName = getLongDayName(daySeven24Hours[0]);
+
+  const dayNamesArray = [
+    dayOneName,
+    dayTwoName,
+    dayThreeName,
+    dayFourName,
+    dayFiveName,
+    daySixName,
+    daySevenName,
+  ];
 
       function formatDate(isoString) {
         const date = new Date(isoString);
@@ -133,7 +173,11 @@ export default function Search({ measurementSystem }) {
       setDailyHighArray(dailyHighArray);
       setDailyLowArray(dailyLowArray);
       setDailyWeathercodeArray(dailyWeathercodeArray);
-      console.log(dailyWeathercodeArray);
+      setDayNamesArray(dayNamesArray);
+      setHourlyTimes(hourlyDateArray);
+      setHourlyTemps(hourlyTempArray);
+      setHourlyWeatherCodes(hourlyWeatherCodeArray);
+      console.log(dayNamesArray);
 
       // setHourlyHighArray(hourlyHighArray);
       // console.log(hourlyHighArray);
@@ -172,7 +216,12 @@ export default function Search({ measurementSystem }) {
         dailyLowArray={dailyLowArray}
         dailyWeathercodeArray={dailyWeathercodeArray}
       />
-      <HourlyForecast />
+      <HourlyForecast
+        dayNamesArray={dayNamesArray}
+        hourlyTimes={hourlyTimes}
+        hourlyTemps={hourlyTemps}
+        hourlyWeatherCodes={hourlyWeatherCodes}
+      />
     </>
   );
 }
