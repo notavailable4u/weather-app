@@ -35,7 +35,6 @@ export default function Search({ measurementSystem }) {
     const query = formData.get("query");
     setLoading(true);
     setError(null);
-    // setWeather(null);
 
     try {
       // Get geolocation from Open-Meteo Geocoding API
@@ -61,7 +60,7 @@ export default function Search({ measurementSystem }) {
         longitude,
         timezone,
         cityName,
-        country
+        country,
       );
 
       const usingImperial = measurementSystem !== "metric";
@@ -102,39 +101,41 @@ export default function Search({ measurementSystem }) {
       const hourlyWeatherCodeArray = weatherData.hourly.weather_code;
 
       // Hourly Forecast conversions
-       const safeHourlyDates = Array.isArray(hourlyDateArray) ? hourlyDateArray : [];
-  const dayOne24Hours = safeHourlyDates.slice(0, 24);
-  const dayTwo24Hours = safeHourlyDates.slice(24, 48);
-  const dayThree24Hours = safeHourlyDates.slice(48, 72);
-  const dayFour24Hours = safeHourlyDates.slice(72, 96);
-  const dayFive24Hours = safeHourlyDates.slice(96, 120);
-  const daySix24Hours = safeHourlyDates.slice(120, 144);
-  const daySeven24Hours = safeHourlyDates.slice(144, 168);
+      const safeHourlyDates = Array.isArray(hourlyDateArray)
+        ? hourlyDateArray
+        : [];
+      const dayOne24Hours = safeHourlyDates.slice(0, 24);
+      const dayTwo24Hours = safeHourlyDates.slice(24, 48);
+      const dayThree24Hours = safeHourlyDates.slice(48, 72);
+      const dayFour24Hours = safeHourlyDates.slice(72, 96);
+      const dayFive24Hours = safeHourlyDates.slice(96, 120);
+      const daySix24Hours = safeHourlyDates.slice(120, 144);
+      const daySeven24Hours = safeHourlyDates.slice(144, 168);
 
-  function getLongDayName(isoString) {
-  const date = new Date(isoString);
-  return Intl.DateTimeFormat("en-US", {
-    weekday: "long",
-  }).format(date);
-}
+      function getLongDayName(isoString) {
+        const date = new Date(isoString);
+        return Intl.DateTimeFormat("en-US", {
+          weekday: "long",
+        }).format(date);
+      }
 
-  const dayOneName = getLongDayName(dayOne24Hours[0]);
-  const dayTwoName = getLongDayName(dayTwo24Hours[0]);
-  const dayThreeName = getLongDayName(dayThree24Hours[0]);
-  const dayFourName = getLongDayName(dayFour24Hours[0]);
-  const dayFiveName = getLongDayName(dayFive24Hours[0]);
-  const daySixName = getLongDayName(daySix24Hours[0]);
-  const daySevenName = getLongDayName(daySeven24Hours[0]);
+      const dayOneName = getLongDayName(dayOne24Hours[0]);
+      const dayTwoName = getLongDayName(dayTwo24Hours[0]);
+      const dayThreeName = getLongDayName(dayThree24Hours[0]);
+      const dayFourName = getLongDayName(dayFour24Hours[0]);
+      const dayFiveName = getLongDayName(dayFive24Hours[0]);
+      const daySixName = getLongDayName(daySix24Hours[0]);
+      const daySevenName = getLongDayName(daySeven24Hours[0]);
 
-  const dayNamesArray = [
-    dayOneName,
-    dayTwoName,
-    dayThreeName,
-    dayFourName,
-    dayFiveName,
-    daySixName,
-    daySevenName,
-  ];
+      const dayNamesArray = [
+        dayOneName,
+        dayTwoName,
+        dayThreeName,
+        dayFourName,
+        dayFiveName,
+        daySixName,
+        daySevenName,
+      ];
 
       function formatDate(isoString) {
         const date = new Date(isoString);
@@ -178,9 +179,6 @@ export default function Search({ measurementSystem }) {
       setHourlyTemps(hourlyTempArray);
       setHourlyWeatherCodes(hourlyWeatherCodeArray);
       console.log(dayNamesArray);
-
-      // setHourlyHighArray(hourlyHighArray);
-      // console.log(hourlyHighArray);
     } catch (err) {
       console.error(`Error: ${err}`);
       setError(err.message);

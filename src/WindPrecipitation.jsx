@@ -9,14 +9,14 @@ export default function WindPrecipitation({
     <>
       <div className="windprecipitation">
         <div className="weatherDetail">
-          <p>Wind</p>
-          <p>
+          <span className="textPreset6">Wind</span>
+          <span className="textPreset3">
             {wind} {windMeasure}
-          </p>
+          </span>
         </div>
         <div className="weatherDetail">
-          <p>Precipitation</p>
-          <p>{precipitation} {precipitationMeasure}</p>
+          <span className="textPreset6">Precipitation</span>
+          <span className="textPreset3">{precipitation} {precipitationMeasure}</span>
         </div>
       </div>
     </>

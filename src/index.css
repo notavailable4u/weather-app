@@ -1,5 +1,5 @@
+/* BEGIN DESIGN TOKENS: COLORS */
 :root {
-  /* COLORS */
   --neutral900: hsl(243, 96%, 9%);
   --neutral800: hsl(243, 27%, 20%);
   --neutral700: hsl(243, 23%, 24%);
@@ -14,52 +14,9 @@
 
   --blue700: hsl(248, 70%, 36%);
 }
+/* END DESIGN TOKENS: COLORS */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: var(--neutral900);
-  color: var(--neutral0);
-  font-size: 18px;
-  padding: 16px 16px 48px;
-  line-height: 120%;
-  letter-spacing: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 48px;
-  min-height: 100vh;
-}
-
-header {
-  width: 100%;
-  max-width: 343px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-}
-
-main {
-  width: 100%;
-  max-width: 343px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-form {
-  width: 100%;
-}
-
-.logoUtilityBanner {
-  width: 100%;
-  gap: 16px;
-}
+/* BEGIN FONTS */
 .bricolage-grotesque {
   font-family: "Bricolage Grotesque", sans-serif;
   font-optical-sizing: auto;
@@ -74,31 +31,32 @@ form {
   font-weight: 300;
   font-style: normal;
 }
+/* END FONTS */
 
-.logoUtilityBanner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  align-self: stretch;
-}
-
-h1 {
-  font-family: "Bricolage Grotesque", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 700;
-  font-style: normal;
-  font-size: 52px;
-  line-height: 120%;
-  letter-spacing: 0;
-  text-align: center;
-}
-
+/* BEGIN TYPOGRAPHY */
 .textPreset1 {
   font-family: "DM Sans", sans-serif;
   font-size: 96px;
   line-height: 100%;
   font-style: italic;
   letter-spacing: -2px;
+}
+
+.textPreset2 {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 52px;
+  font-weight: bold;
+  line-height: 120%;
+  letter-spacing: 0;
+}
+
+.textPreset3 {
+  font-family: "DM Sans", sans-serif;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 100%;
+  letter-spacing: 0;
+  color: var(--neutral0);
 }
 
 .textPreset4 {
@@ -116,7 +74,7 @@ h1 {
   font-weight: 500;
   line-height: 120%;
   letter-spacing: 0;
-  color: var(--neutral0);
+  color: var(--neutral200);
 }
 
 .textPreset6 {
@@ -142,15 +100,89 @@ h1 {
   line-height: 120%;
   letter-spacing: 0;
 }
+/* END TYPOGRAPHY */
 
-/* GRID LAYOUT */
+/* BEGIN BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--neutral900);
+  color: var(--neutral0);
+  font-size: 18px;
+  padding: 16px 16px 48px;
+  line-height: 120%;
+  letter-spacing: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  min-height: 100vh;
+}
+/* END BASE */
+
+/* BEGIN LAYOUT */
+header {
+  width: 100%;
+  max-width: 343px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+main {
+  width: 100%;
+  max-width: 343px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+form {
+  width: 100%;
+}
+
+.logoUtilityBanner {
+  width: 100%;
+  gap: 16px;
+}
+
+.logoUtilityBanner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+/* END LAYOUT */
+
+/* BEGIN HEADER */
+h1 {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 52px;
+  line-height: 120%;
+  letter-spacing: 0;
+  text-align: center;
+  margin-bottom: 64px;
+  margin-top: 64px;
+}
+/* END HEADER */
+
+/* BEGIN COMPONENT: SEARCH FORM */
 .searchbar {
   display: flex;
   align-items: stretch;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: column;
   gap: 12px;
   width: 100%;
+  margin-inline: auto;
 }
 
 .searchbar label {
@@ -201,7 +233,9 @@ button:hover {
   background-color: var(--blue700);
   cursor: pointer;
 }
+/* END COMPONENT: SEARCH FORM */
 
+/* BEGIN COMPONENT: CURRENT DATE */
 .currentdate {
   display: flex;
   align-items: center;
@@ -209,7 +243,10 @@ button:hover {
   flex-direction: column;
   gap: 16px;
   background-color: var(--neutral800);
-  background-image: url(./assets/images/bg-today-large.svg);
+  background-image: url(./assets/images/bg-today-small.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   border-radius: 20px;
   grid-area: currentdate;
   width: 100%;
@@ -221,9 +258,10 @@ button:hover {
   width: 120px;
   height: 120px;
 }
+/* END COMPONENT: CURRENT DATE */
 
+/* BEGIN COMPONENT: FEELS LIKE AND WIND-PRECIPITATION */
 .feelhumid {
-  /* background-color: darkslateblue; */
   grid-area: feelhumid;
   display: flex;
   justify-content: center;
@@ -256,7 +294,9 @@ button:hover {
   align-self: stretch;
   width: 100%;
 }
+/* END COMPONENT: FEELS LIKE AND WIND-PRECIPITATION */
 
+/* BEGIN COMPONENT: HOURLY FORECAST */
 .hourly {
   grid-area: hourly;
   width: 100%;
@@ -325,7 +365,9 @@ select:hover {
   gap: 4px;
   flex-grow: 1;
 }
+/* END COMPONENT: HOURLY FORECAST */
 
+/* BEGIN COMPONENT: DAILY FORECAST */
 .days {
   grid-area: days;
   width: 100%;
@@ -351,7 +393,7 @@ select:hover {
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  flex: 1 1 calc((100% - 32px) / 3);
+  flex-grow: 1;
   min-width: 100px;
   background-color: var(--neutral800);
   padding: 16px 10px;
@@ -370,146 +412,13 @@ select:hover {
   height: 40px;
   width: 40px;
 }
+/* END COMPONENT: DAILY FORECAST */
 
-.noResult {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-}
-
-@media (min-width: 768px) and (max-width: 1199px) {
-  body {
-    padding: 24px 24px 80px;
-    gap: 48px;
-  }
-
-  header {
-    max-width: 720px;
-  }
-
-  main {
-    max-width: 720px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-      "searchbar searchbar"
-      "currentdate currentdate"
-      "feelhumid windprecipitation"
-      "days days"
-      "hourly hourly";
-    column-gap: 20px;
-    row-gap: 32px;
-  }
-
-  form {
-    grid-area: searchbar;
-  }
-
-  .searchbar {
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-  }
-
-  input {
-    width: 590px;
-  }
-
-  button {
-    width: 114px;
-  }
-
-  .currentdate {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
-    padding: 80px 24px;
-  }
-
-  .hourly {
-    max-width: 720px;
-    padding: 24px;
-  }
-
-  .dayContainer {
-    flex: 1 1 calc((100% - 48px) / 4);
-    min-width: 150px;
-  }
-}
-
-@media (min-width: 1200px) {
-  body {
-    padding: 48px 112px 80px;
-    gap: 64px;
-  }
-
-  header {
-    max-width: 1216px;
-  }
-
-  main {
-    max-width: 1216px;
-    display: grid;
-    grid-template-columns: 384px 384px 384px;
-    grid-template-areas:
-      "searchbar searchbar searchbar"
-      "currentdate currentdate hourly"
-      "feelhumid windprecipitation hourly"
-      "days days hourly";
-    column-gap: 32px;
-    row-gap: 32px;
-  }
-
-  form {
-    grid-area: searchbar;
-    justify-self: start;
-  }
-
-  .searchbar {
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    width: 656px;
-  }
-
-  input {
-    width: 526px;
-  }
-
-  button {
-    width: 114px;
-  }
-
-  .currentdate {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
-    padding: 80px 24px;
-  }
-
-  .hourly {
-    max-width: 384px;
-    width: 384px;
-    padding: 24px;
-  }
-
-  .sevenDayContainer {
-    gap: 20px;
-  }
-
-  .dayContainer {
-    flex: 1 1 0;
-    min-width: 0;
-  }
-}
-/* END GRID LAYOUT */
-
-/* UNIT DROPDOWN STYLES */
-
+/* BEGIN COMPONENT: UNIT DROPDOWN */
 .dropDown {
   position: relative;
-  width: 214px;
+  width: min(214px, 100%);
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -550,7 +459,8 @@ select:hover {
 }
 
 .unitLabel.textPreset7 {
-  width: 198px;
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -571,7 +481,8 @@ select:hover {
 }
 
 .unitOption {
-  width: 198px;
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -581,7 +492,8 @@ select:hover {
 }
 
 .unitOptionSelected {
-  width: 198px;
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -596,3 +508,178 @@ select:hover {
   margin-top: 8px;
   margin-bottom: 8px;
 }
+/* END COMPONENT: UNIT DROPDOWN */
+
+/* BEGIN STATE: EMPTY */
+.noResult {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding-top: 48px;
+}
+/* END STATE: EMPTY */
+
+/* BEGIN RESPONSIVE */
+@media (max-width: 767px) {
+  .dayContainer {
+    flex: 0 0 calc((100% - 32px) / 3);
+    max-width: calc((100% - 32px) / 3);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  body {
+    padding: 24px 24px 80px;
+    gap: 48px;
+  }
+
+  header {
+    max-width: 720px;
+  }
+
+  main {
+    max-width: 720px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "searchbar searchbar"
+      "currentdate currentdate"
+      "feelhumid windprecipitation"
+      "days days"
+      "hourly hourly";
+    column-gap: 20px;
+    row-gap: 32px;
+  }
+
+  form {
+    grid-area: searchbar;
+  }
+
+  .searchbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  input {
+    width: 590px;
+  }
+
+  button {
+    width: 114px;
+  }
+
+  .currentdate {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    background-image: url(./assets/images/bg-today-small.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 80px 24px;
+  }
+
+  .hourly {
+    max-width: 720px;
+    padding: 24px;
+  }
+  .sevenDayContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    flex-wrap: nowrap;
+    max-width: 720px;
+    width: 100%;
+  }
+
+  .dayContainer {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    background-color: var(--neutral800);
+    padding: 16px 10px;
+    border-radius: 12px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--neutral600);
+  }
+}
+
+@media (min-width: 1200px) {
+  body {
+    padding: 48px 112px 80px;
+    gap: 64px;
+  }
+
+  header {
+    max-width: 1216px;
+  }
+
+  main {
+    max-width: 1216px;
+    display: grid;
+    grid-template-columns: 384px 384px 384px;
+    grid-template-areas:
+      "searchbar searchbar searchbar"
+      "currentdate currentdate hourly"
+      "feelhumid windprecipitation hourly"
+      "days days hourly";
+    column-gap: 32px;
+    row-gap: 32px;
+  }
+
+  form {
+    grid-area: searchbar;
+    justify-self: center;
+  }
+
+  .searchbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 656px;
+  }
+
+  input {
+    width: 526px;
+  }
+
+  button {
+    width: 114px;
+  }
+
+  .currentdate {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    background-image: url(./assets/images/bg-today-large.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 80px 24px;
+  }
+
+  .hourly {
+    max-width: 384px;
+    width: 384px;
+    padding: 24px;
+  }
+
+  .sevenDayContainer {
+    gap: 20px;
+    justify-content: space-between;
+  }
+
+  .dayContainer {
+    min-width: 0;
+  }
+}
+/* END RESPONSIVE */
