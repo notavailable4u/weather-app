@@ -3,12 +3,12 @@ export default function FeelLikeHumidity({ feelsLike, humidity }) {
     <>
       <div className="feelhumid">
         <div className="weatherDetail">
-          <p>Feels Like</p>
-          <p>{feelsLike}&#176;</p>
+          <span className="textPreset6">Feels Like</span>
+          <span className="textPreset3">{feelsLike}&#176;</span>
         </div>
         <div className="weatherDetail">
-          <p>Humidity</p>
-          <p>{humidity}%</p>
+          <span className="textPreset6">Humidity</span>
+          <span className="textPreset3">{humidity}%</span>
         </div>
       </div>
     </>

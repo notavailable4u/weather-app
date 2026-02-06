@@ -21,7 +21,7 @@ export default function DailyForecast({
   return (
     <>
       <div className="days">
-        <p>Daily Forecast</p>
+        <p className="textPreset5">Daily Forecast</p>
         <div className="sevenDayContainer">
           {safeDaysArray.map((day, index) => {
             const icon = dailyIcons[index];
