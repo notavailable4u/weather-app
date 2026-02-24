@@ -5,7 +5,7 @@ import UnitsDropdown from "./UnitsDropdown";
 
 function App() {
   const [measurementSystem, setMeasurementSystem] = useState("imperial");
-
+  const [apiErrorMessage, setApiErrorMessage] = useState("");
   return (
     <>
       <header>
@@ -19,9 +19,16 @@ function App() {
         <h1>How's the sky looking today?</h1>
       </header>
       <main>
-        <Search measurementSystem={measurementSystem} />
+        <Search
+          measurementSystem={measurementSystem}
+          onApiError={setApiErrorMessage}
+        />
+        {apiErrorMessage ? (
+          <p className="textPreset5" role="alert">
+            {apiErrorMessage}
+          </p>
+        ) : null}
       </main>
-      {/*  */}
     </>
   );
 }

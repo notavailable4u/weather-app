@@ -520,6 +520,18 @@ select:hover {
 }
 /* END STATE: EMPTY */
 
+/* BEGIN STATE: ERROR */
+.btnRetry {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+background-color: var(--neutral800);
+padding: 12px 16px;
+border-radius: 8px;
+}
+/* END STATE: ERROR */
+
 /* BEGIN RESPONSIVE */
 @media (max-width: 767px) {
   .dayContainer {

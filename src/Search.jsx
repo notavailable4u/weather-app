@@ -6,9 +6,11 @@ import DailyForecast from "./DailyForecast";
 import HourlyForecast from "./HourlyForecast";
 import NoResultView from "./NoResultView";
 import SearchForm from "./SearchForm";
+import Loading from "./Loading";
 
-export default function Search({ measurementSystem }) {
+export default function Search({ measurementSystem, onApiError }) {
   const [weather, setWeather] = useState(null);
+  const [hasSearched, setHasSearched] = useState(false);
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
   const [date, setDate] = useState("");
@@ -33,17 +35,24 @@ export default function Search({ measurementSystem }) {
 
   async function search(formData) {
     const query = formData.get("query");
+    setHasSearched(true);
     setLoading(true);
     setError(null);
+    onApiError?.("");
 
     try {
       // Get geolocation from Open-Meteo Geocoding API
       const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${query}&count=1&language=en&format=json`;
       const geoResponse = await fetch(geoUrl);
+      if (!geoResponse.ok) {
+        throw new Error(
+          "We could not look up that location right now. Please try again.",
+        );
+      }
       const geoData = await geoResponse.json();
 
       if (!geoData.results || geoData.results.length === 0) {
-        throw new Error("Location not found");
+        throw new Error("We could not find that location. Try another city.");
       }
 
       const {
@@ -74,7 +83,17 @@ export default function Search({ measurementSystem }) {
       console.log("Weather URL:", weatherUrl);
 
       const weatherResponse = await fetch(weatherUrl);
+      if (!weatherResponse.ok) {
+        throw new Error(
+          "Weather data is unavailable right now. Please try again in a moment.",
+        );
+      }
       const weatherData = await weatherResponse.json();
+      if (!weatherData?.current || !weatherData?.daily || !weatherData?.hourly) {
+        throw new Error(
+          "We received an unexpected weather response. Please try again.",
+        );
+      }
       console.log(weatherData);
 
       const date = weatherData.current.time;
@@ -181,14 +200,33 @@ export default function Search({ measurementSystem }) {
       console.log(dayNamesArray);
     } catch (err) {
       console.error(`Error: ${err}`);
-      setError(err.message);
+      const message =
+        err?.message || "Something went wrong while loading the weather data.";
+      setError(message);
+      if (message === "We could not find that location. Try another city.") {
+        onApiError?.("");
+      } else {
+        onApiError?.(message);
+      }
     } finally {
       setLoading(false);
     }
   }
 
-  if (error === "Location not found") {
+  if (!hasSearched) {
+    return <SearchForm search={search} />;
+  }
+
+  if (error === "We could not find that location. Try another city.") {
     return <NoResultView search={search} />;
+  }
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <SearchForm search={search} />;
   }
 
   return (
