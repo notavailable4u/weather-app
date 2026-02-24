@@ -4,7 +4,7 @@ export default function FeelLikeHumidity({ feelsLike, humidity }) {
       <div className="feelhumid">
         <div className="weatherDetail">
           <span className="textPreset6">Feels Like</span>
-          <span className="textPreset3">{feelsLike}&#176;</span>
+          <span className="textPreset3">{feelsLike} &#176;</span>
         </div>
         <div className="weatherDetail">
           <span className="textPreset6">Humidity</span>
