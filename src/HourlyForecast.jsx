@@ -3,21 +3,15 @@ import { getIcon } from "./CurrentDate";
 
 export default function HourlyForecast({
   dayNamesArray,
-  hourlyTimes,
-  hourlyTemps,
-  hourlyWeatherCodes,
+  hourlyForecast,
 }) {
   const safeDayNames = Array.isArray(dayNamesArray) ? dayNamesArray : [];
-  const safeTimes = Array.isArray(hourlyTimes) ? hourlyTimes : [];
-  const safeTemps = Array.isArray(hourlyTemps) ? hourlyTemps : [];
-  const safeWeatherCodes = Array.isArray(hourlyWeatherCodes)
-    ? hourlyWeatherCodes
-    : [];
+  const safeHourlyForecast = Array.isArray(hourlyForecast) ? hourlyForecast : [];
 
   const [selectedDayIndex, setSelectedDayIndex] = useState(0);
 
   const hourlyForSelectedDay = useMemo(() => {
-    if (!safeTimes.length) {
+    if (!safeHourlyForecast.length) {
       return [];
     }
 
@@ -26,19 +20,21 @@ export default function HourlyForecast({
     const now = Date.now();
 
     const results = [];
-    for (let i = startIndex; i < endIndex && i < safeTimes.length; i++) {
-      if (selectedDayIndex === 0 && Date.parse(safeTimes[i]) <= now) {
+    for (let i = startIndex; i < endIndex && i < safeHourlyForecast.length; i++) {
+      const hour = safeHourlyForecast[i];
+
+      if (!hour?.time) {
         continue;
       }
-      results.push({
-        time: safeTimes[i],
-        temperature: safeTemps[i],
-        weatherCode: safeWeatherCodes[i],
-      });
+
+      if (selectedDayIndex === 0 && Date.parse(hour.time) <= now) {
+        continue;
+      }
+      results.push(hour);
     }
 
     return results;
-  }, [safeTimes, safeTemps, safeWeatherCodes, selectedDayIndex]);
+  }, [safeHourlyForecast, selectedDayIndex]);
 
   return (
     <div className="hourly">
