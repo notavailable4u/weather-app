@@ -108,7 +108,7 @@ State is organized by forecast scope (current, hourly, daily) to support multi-v
 AI tools (GitHub Copilot, Codex, ChatGPT) were used for code review, refactoring guidance, and implementation support. Final architectural and code decisions were made by me.
 
 Detailed examples of how AI was used in specific components are documented here:  
-👉 [AI Usage Notes](docs/ai-usage.md)
+👉 [AI Usage Notes](/docs/AI-USAGE.md)
 
 ## Screenshots
 
