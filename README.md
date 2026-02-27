@@ -4,6 +4,7 @@
 [![Repo Size](https://img.shields.io/github/repo-size/notavailable4u/weather-app)](https://github.com/notavailable4u/weather-app)
 [![Tech](https://img.shields.io/badge/React-19-blue)](https://react.dev)
 [![Vite](https://img.shields.io/badge/Vite-7-purple)](https://vite.dev)
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://notavailable4u.github.io/weather-app/)
 
 Production-style weather application built with React 19 and Vite. Users can search any location and view current conditions, hourly trends, and 7-day forecasts with unit switching and responsive layouts.
 
