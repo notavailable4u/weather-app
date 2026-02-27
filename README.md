@@ -1,10 +1,15 @@
-<div align="center">
-  <img width="600" height="375" alt="GIF of Search and Result view" src="src/assets/screenshots/search-result.gif" />
-</div>
-
 # Weather App (React + Open-Meteo API)
 
+[![Last Commit](https://img.shields.io/github/last-commit/notavailable4u/weather-app)](https://github.com/notavailable4u/weather-app/commits/main)
+[![Repo Size](https://img.shields.io/github/repo-size/notavailable4u/weather-app)](https://github.com/notavailable4u/weather-app)
+[![Tech](https://img.shields.io/badge/React-19-blue)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-7-purple)](https://vite.dev)
+
 Production-style weather application built with React 19 and Vite. Users can search any location and view current conditions, hourly trends, and 7-day forecasts with unit switching and responsive layouts.
+
+<div align="center">
+  <img width="600" alt="Weather App Search and Results" src="src/assets/screenshots/search-result.gif" />
+</div>
 
 Live challenge brief: [Frontend Mentor - Weather App](https://www.frontendmentor.io/challenges/weather-app-K1FhddVm49)
 
@@ -51,7 +56,8 @@ This project was developed from one of the [Frontend Mentor Challenge Projects](
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react)
 - [Open-Meteo API](https://open-meteo.com/)
 
-Node requirement: Vite 7 requires Node.js `20.19+` or `22.12+`.
+### Requirements
+Node.js 20.19+ or 22.12+ (required for Vite 7)
 
 ## Getting Started
 
@@ -70,6 +76,14 @@ Open the local URL shown in the terminal (typically `http://localhost:5173`).
 - `npm run build` - build production bundle
 - `npm run preview` - preview production build locally
 - `npm run lint` - run ESLint
+
+## Architecture Overview
+
+The application uses a two-step data flow:
+1. Geocoding API → converts location name to coordinates
+2. Forecast API → retrieves weather data using latitude/longitude
+
+State is organized by forecast scope (current, hourly, daily) to support multi-view rendering and unit switching.
 
 ## Engineering Notes
 
@@ -92,6 +106,9 @@ Open the local URL shown in the terminal (typically `http://localhost:5173`).
 ## AI Usage Disclosure
 
 AI tools (GitHub Copilot, Codex, ChatGPT) were used for code review, refactoring guidance, and implementation support. Final architectural and code decisions were made by me.
+
+Detailed examples of how AI was used in specific components are documented here:  
+👉 [AI Usage Notes](docs/ai-usage.md)
 
 ## Screenshots
 
