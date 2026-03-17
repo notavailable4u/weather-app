@@ -3,6 +3,11 @@ import logoSvg from "./assets/images/logo.svg";
 import Search from "./Search";
 import UnitsDropdown from "./UnitsDropdown";
 
+/**
+ * Renders the main weather application shell and tracks shared UI state.
+ *
+ * @returns {JSX.Element} The application layout.
+ */
 function App() {
   const [measurementSystem, setMeasurementSystem] = useState("imperial");
   const [apiErrorMessage, setApiErrorMessage] = useState("");

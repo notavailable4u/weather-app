@@ -118,10 +118,27 @@ const DEFAULT_ICON = {
   alt: null,
 };
 
+/**
+ * Maps an Open-Meteo weather code to the matching icon metadata.
+ *
+ * @param {number} weatherCode Numeric weather code from the API.
+ * @returns {{src: string | null, alt: string | null}} Icon metadata for the supplied code.
+ */
 export function getIcon(weatherCode) {
   return ICONS_BY_WEATHER_CODE[weatherCode] ?? DEFAULT_ICON;
 }
 
+/**
+ * Displays the current location, date, condition icon, and temperature.
+ *
+ * @param {object} props Component props.
+ * @param {string} props.country Country name for the selected location.
+ * @param {string} props.cityName City name for the selected location.
+ * @param {string} props.date Formatted current date string.
+ * @param {number} props.temperatureCurrent Rounded current temperature.
+ * @param {number} props.weatherCode Current weather code.
+ * @returns {JSX.Element} The current conditions summary.
+ */
 export default function CurrentDate({
   country,
   cityName,

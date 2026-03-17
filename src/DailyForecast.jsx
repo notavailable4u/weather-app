@@ -1,4 +1,15 @@
 import { getIcon } from "./CurrentDate";
+
+/**
+ * Renders the seven-day forecast overview.
+ *
+ * @param {object} props Component props.
+ * @param {string[]} props.daysArray Short day labels.
+ * @param {number[]} props.dailyHighArray Daily high temperatures.
+ * @param {number[]} props.dailyLowArray Daily low temperatures.
+ * @param {number[]} props.dailyWeathercodeArray Daily weather codes.
+ * @returns {JSX.Element} The daily forecast card.
+ */
 export default function DailyForecast({
   daysArray,
   dailyHighArray,
@@ -15,6 +26,13 @@ export default function DailyForecast({
   const roundedHighTemp = safeHighArray.map((number) => Math.round(number));
   const roundedLowTemp = safeLowArray.map((number) => Math.round(number));
   const dailyIcons = safeWeatherCodes.map((code) => getIcon(code));
+
+  /**
+   * Formats a temperature value for display.
+   *
+   * @param {number} temp Temperature value to format.
+   * @returns {string} Formatted temperature or a fallback placeholder.
+   */
   const formatTemp = (temp) => (Number.isFinite(temp) ? `${temp}°` : "--");
 
   return (

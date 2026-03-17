@@ -7,12 +7,26 @@ import { fetchWeatherByQuery, mapWeatherResponse } from "./weatherApi";
 
 const NOT_FOUND_ERROR = "We could not find that location. Try another city.";
 
+/**
+ * Handles weather searches and selects the correct view for the current search state.
+ *
+ * @param {object} props Component props.
+ * @param {"metric"|"imperial"} props.measurementSystem Active unit system.
+ * @param {(message: string) => void} [props.onApiError] Callback for top-level API errors.
+ * @returns {JSX.Element} The search experience for the current state.
+ */
 export default function Search({ measurementSystem, onApiError }) {
   const [weather, setWeather] = useState(null);
   const [hasSearched, setHasSearched] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  /**
+   * Submits a location query and stores the mapped weather response.
+   *
+   * @param {FormData} formData Submitted search form data.
+   * @returns {Promise<void>} Resolves when the request cycle finishes.
+   */
   async function search(formData) {
     const query = formData.get("query");
 
