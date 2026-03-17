@@ -1,5 +1,13 @@
 import iconError from "./assets/icon-error.svg";
 
+/**
+ * Renders a retryable API error state.
+ *
+ * @param {object} props Component props.
+ * @param {() => void} props.search Retry callback.
+ * @param {string} props.error Error details to display.
+ * @returns {JSX.Element} The API error view.
+ */
 export default function ErrorApi({ search, error }) {
   return (
     <div className="errorApi">

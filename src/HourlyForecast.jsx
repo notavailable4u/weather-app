@@ -1,6 +1,14 @@
 import { useMemo, useState } from "react";
 import { getIcon } from "./CurrentDate";
 
+/**
+ * Displays the hourly forecast and lets the user select which day to inspect.
+ *
+ * @param {object} props Component props.
+ * @param {string[]} props.dayNamesArray List of day labels for the selector.
+ * @param {{time: string, temperature: number, weatherCode: number}[]} props.hourlyForecast Hourly forecast entries.
+ * @returns {JSX.Element} The hourly forecast card.
+ */
 export default function HourlyForecast({
   dayNamesArray,
   hourlyForecast,

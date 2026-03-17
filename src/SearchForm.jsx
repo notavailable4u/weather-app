@@ -1,3 +1,11 @@
+/**
+ * Renders the reusable search form wrapper used across search states.
+ *
+ * @param {object} props Component props.
+ * @param {(formData: FormData) => void | Promise<void>} props.search Form action handler.
+ * @param {React.ReactNode} [props.children] Optional content rendered below the input.
+ * @returns {JSX.Element} The search form UI.
+ */
 export default function SearchForm({ search, children }) {
   return (
     <form action={search}>

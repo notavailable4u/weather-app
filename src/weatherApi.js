@@ -1,3 +1,10 @@
+/**
+ * Fetches geocoding and forecast data for a search query from Open-Meteo.
+ *
+ * @param {string} query City or location query entered by the user.
+ * @param {"metric"|"imperial"} measurementSystem Preferred measurement system.
+ * @returns {Promise<{location: {cityName: string, country: string}, weatherData: object}>} The raw API payload with location metadata.
+ */
 export async function fetchWeatherByQuery(query, measurementSystem) {
   const geoUrl = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=1&language=en&format=json`;
   const geoResponse = await fetch(geoUrl);
@@ -44,6 +51,12 @@ export async function fetchWeatherByQuery(query, measurementSystem) {
   };
 }
 
+/**
+ * Formats the current forecast date for display.
+ *
+ * @param {string} isoString ISO date-time string from the API.
+ * @returns {string} A localized date string.
+ */
 function formatCurrentDate(isoString) {
   return Intl.DateTimeFormat("en-US", {
     weekday: "long",
@@ -53,18 +66,39 @@ function formatCurrentDate(isoString) {
   }).format(new Date(isoString));
 }
 
+/**
+ * Converts an ISO date-time string into a short weekday label.
+ *
+ * @param {string} isoString ISO date-time string from the API.
+ * @returns {string} Short weekday name.
+ */
 function getShortDayName(isoString) {
   return Intl.DateTimeFormat("en-US", {
     weekday: "short",
+    timeZone: "UTC",
   }).format(new Date(isoString));
 }
 
+/**
+ * Converts an ISO date-time string into a long weekday label.
+ *
+ * @param {string} isoString ISO date-time string from the API.
+ * @returns {string} Full weekday name.
+ */
 function getLongDayName(isoString) {
   return Intl.DateTimeFormat("en-US", {
     weekday: "long",
   }).format(new Date(isoString));
 }
 
+/**
+ * Normalizes the raw API response into the shape consumed by the UI.
+ *
+ * @param {object} response Weather response container.
+ * @param {object} response.weatherData Raw forecast payload from Open-Meteo.
+ * @param {{cityName: string, country: string}} response.location Selected location metadata.
+ * @returns {object} Mapped weather data ready for rendering.
+ */
 export function mapWeatherResponse({ weatherData, location }) {
   const dailyTimes = Array.isArray(weatherData.daily.time) ? weatherData.daily.time : [];
   const hourlyTimes = Array.isArray(weatherData.hourly.time) ? weatherData.hourly.time : [];

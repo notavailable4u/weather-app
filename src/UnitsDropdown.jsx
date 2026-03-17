@@ -3,6 +3,14 @@ import iconCheckmark from "./assets/images/iconCheckmark.svg";
 import unitSvg from "./assets/images/icon-units.svg";
 import iconDropdown from "./assets/images/iconDropdown.svg";
 
+/**
+ * Displays the measurement system selector used by the app header.
+ *
+ * @param {object} props Component props.
+ * @param {"metric"|"imperial"} props.measurementSystem Active unit system.
+ * @param {(value: "metric"|"imperial") => void} props.onChange Callback invoked when the unit system changes.
+ * @returns {JSX.Element} The units dropdown control.
+ */
 export default function UnitsDropdown({ measurementSystem, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -10,10 +18,22 @@ export default function UnitsDropdown({ measurementSystem, onChange }) {
   const isMetric = measurementSystem === "metric";
   const switchLabel = isMetric ? "Switch to Imperial" : "Switch to Metric";
 
+  /**
+   * Toggles between metric and imperial measurements.
+   *
+   * @returns {void}
+   */
   const handleToggleSystem = () => {
     onChange(isMetric ? "imperial" : "metric");
   };
 
+  /**
+   * Renders a single unit option row with an optional selected indicator.
+   *
+   * @param {string} label Label shown for the unit option.
+   * @param {boolean} selected Whether the option is currently active.
+   * @returns {JSX.Element} The unit option row.
+   */
   const renderUnitOption = (label, selected) => (
     <div className={selected ? "unitOptionSelected" : "unitOption"}>
       <span>{label}</span>
@@ -22,6 +42,12 @@ export default function UnitsDropdown({ measurementSystem, onChange }) {
   );
 
   useEffect(() => {
+    /**
+     * Closes the dropdown when the user clicks outside of it.
+     *
+     * @param {MouseEvent} event The mouse event fired by the document.
+     * @returns {void}
+     */
     const handleClickOutside = (event) => {
       if (!isOpen) return;
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {

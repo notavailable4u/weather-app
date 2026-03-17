@@ -1,3 +1,11 @@
+/**
+ * Shows secondary current-condition metrics for feels-like temperature and humidity.
+ *
+ * @param {object} props Component props.
+ * @param {number} props.feelsLike Rounded apparent temperature.
+ * @param {number} props.humidity Relative humidity percentage.
+ * @returns {JSX.Element} The feels-like and humidity card.
+ */
 export default function FeelLikeHumidity({ feelsLike, humidity }) {
   return (
     <>

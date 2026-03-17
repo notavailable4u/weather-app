@@ -4,6 +4,13 @@ import WindPrecipitation from "./WindPrecipitation";
 import DailyForecast from "./DailyForecast";
 import HourlyForecast from "./HourlyForecast";
 
+/**
+ * Renders the composed weather results view for a successful search.
+ *
+ * @param {object} props Component props.
+ * @param {object | null} props.weather Normalized weather data.
+ * @returns {JSX.Element | null} The weather results, or `null` when no data exists.
+ */
 export default function WeatherResults({ weather }) {
   if (!weather) {
     return null;
